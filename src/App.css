@@ -1,5 +1,7 @@
 .App {
   background-color: #383838;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .title-container h1 {
@@ -54,6 +56,13 @@ form input[type='submit'] {
   color: white;
   font-weight: bold;
   border: none;
+  transition: all 0.2s ease;
+}
+
+input[type='submit']:hover {
+  border-radius: 25px;
+  background-color: transparent;
+  border: 2px solid #31e981;
 }
 
 @media only screen and (max-width: 500px) {

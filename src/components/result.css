@@ -16,13 +16,14 @@
 
 .result.active {
   position: fixed;
-  width: 400px;
-  height: 505px;
   background-color: #31e981;
   top: 0;
   width: 80%;
   height: 100%;
   box-sizing: border-box;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .result:hover {
@@ -32,4 +33,23 @@
 
 h1 {
   margin: 0;
+}
+
+.result-effect-container {
+  height: 0px;
+  overflow: hidden;
+}
+.result-name-type-container {
+  flex: 1;
+  padding-left: 25px;
+}
+.result-effect-container.active {
+  height: 70%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-left: 1px solid;
+  padding-left: 25px;
 }

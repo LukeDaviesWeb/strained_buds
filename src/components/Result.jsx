@@ -13,10 +13,18 @@ export default class Result extends Component {
 
   handleClick(e) {
     let elem = e.currentTarget;
+    let infoContainer = elem.childNodes[1];
+
     if (elem.classList.contains('active')) {
       elem.classList.remove('active');
     } else {
       elem.classList.add('active');
+    }
+
+    if (infoContainer.classList.contains('active')) {
+      infoContainer.classList.remove('active');
+    } else {
+      infoContainer.classList.add('active');
     }
   }
 
@@ -30,7 +38,7 @@ export default class Result extends Component {
           <div className="result-race">{result.race}</div>
         </div>
 
-        {/* <div className="result-effect-container">
+        <div className="result-effect-container">
           <div>
             <h4>The good: </h4>
             <p>{result.effects.positive}</p>
@@ -40,7 +48,7 @@ export default class Result extends Component {
 
             <p>{result.effects.negative}</p>
           </div>
-        </div> */}
+        </div>
       </div>
     );
   }

@@ -1,3 +1,18 @@
+.App {
+  background-color: #383838;
+}
+
+.title-container h1 {
+  text-align: center;
+  color: white;
+  font-size: 95px;
+  padding: 50px 0px;
+}
+
+.title-container h1 span {
+  color: #31e981;
+}
+
 .result-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(319px, 1fr));
@@ -6,4 +21,43 @@
   padding: 10px;
   max-width: 80%;
   margin: auto;
+}
+
+form {
+  width: 40%;
+  margin: auto;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+form input[type='text'],
+form input[type='submit'],
+select {
+  height: 50px;
+  box-sizing: border-box;
+  padding: 15px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  border: 1px solid #dcd5d5;
+  background-color: white;
+  color: #383838;
+}
+
+form input[type='submit'] {
+  width: 150px;
+  padding: 10px;
+  background-color: #31e981;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+@media only screen and (max-width: 500px) {
+  form {
+    width: 80%;
+  }
 }

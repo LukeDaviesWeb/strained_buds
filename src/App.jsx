@@ -81,6 +81,11 @@ class App extends Component {
 
     return (
       <div className="App">
+        <div className="title-container">
+          <h1>
+            Strainer<span>.</span>
+          </h1>
+        </div>
         <form action="#" onSubmit={this.onSubmit}>
           <input
             type="text"

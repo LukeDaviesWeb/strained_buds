@@ -13,8 +13,11 @@ export default class Result extends Component {
 
   handleClick(e) {
     let elem = e.currentTarget;
-
-    elem.classList.add('active');
+    if (elem.classList.contains('active')) {
+      elem.classList.remove('active');
+    } else {
+      elem.classList.add('active');
+    }
   }
 
   render() {

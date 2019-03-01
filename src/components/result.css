@@ -1,0 +1,31 @@
+.result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #6f6c6c6b;
+  box-shadow: 5px 1px 19px #00000030;
+  color: white;
+}
+
+.result-name-type-container {
+  margin: 20px 0px;
+}
+
+.result.active {
+  position: fixed;
+  width: 400px;
+  height: 505px;
+  background-color: #31e981;
+}
+
+.result:hover {
+  background-color: #31e981;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+}

@@ -162,7 +162,7 @@ class App extends Component {
             </h4>
           ) : (
             <p className="sub-heading">
-              Search a strain name, effect, flavor or race
+              Search a strain name, effect, taste or race
             </p>
           )}
         </div>

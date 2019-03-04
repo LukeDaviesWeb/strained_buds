@@ -44,12 +44,16 @@ h1 {
   padding-left: 25px;
 }
 .result-effect-container.active {
-  height: 70%;
+  height: 102%;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   border-left: 1px solid;
-  padding-left: 25px;
+  padding: 0px 25px;
+}
+
+.result-effect-container.active h4 {
+  margin-bottom: 0px;
 }

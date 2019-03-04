@@ -8,44 +8,50 @@ export default class SearchedResult extends Component {
     this.state = {
       active: false,
       loading: false,
-      positive: {},
-      negative: {},
-      medical: {},
-      flavors: []
+      positive: [],
+      negative: [],
+      medical: [],
+      flavor: []
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.setEffects = this.setEffects.bind(this);
-    this.setFlavors = this.setFlavors.bind(this);
+    this.setEffectsState = this.setEffectsState.bind(this);
+    this.getPositive = this.getPositive.bind(this);
+    this.getNegative = this.getNegative.bind(this);
+    this.getFlavor = this.getFlavor.bind(this);
   }
 
   handleClick(e) {
     let elem = e.currentTarget;
     let infoContainer = elem.childNodes[1];
+    let effectsContainer = elem.childNodes[2];
     let clickedElemID = elem.getAttribute('data-key');
 
     if (elem.classList.contains('active')) {
       elem.classList.remove('active');
       infoContainer.classList.remove('active');
+      effectsContainer.classList.remove('active');
     } else {
       elem.classList.add('active');
       infoContainer.classList.add('active');
+      effectsContainer.classList.add('active');
     }
 
     this.setState(
       {
         clickedID: clickedElemID
       },
-      this.setEffects
+      this.setEffectsState
     );
   }
 
-  setEffects() {
+  setEffectsState() {
     let { clickedID } = this.state;
 
     const APIkey = '30iBMNi';
 
     let url = `http://strainapi.evanbusse.com/${APIkey}/strains/data/effects/${clickedID}`;
+    let flavorURL = `http://strainapi.evanbusse.com/${APIkey}/strains/data/flavors/${clickedID}`;
 
     this.setState({ loading: true });
 
@@ -59,37 +65,72 @@ export default class SearchedResult extends Component {
         []
       );
 
-      this.setState(
-        {
-          positive: arr[0],
-          negative: arr[1],
-          medical: arr[2]
-        },
-        this.setFlavors
-      );
-    });
-  }
+      const positive = Object.values(arr[0]);
+      const negative = Object.values(arr[1]);
+      const medical = Object.values(arr[2]);
 
-  setFlavors() {
-    let { clickedID } = this.state;
-
-    const APIkey = '30iBMNi';
-
-    let url = `http://strainapi.evanbusse.com/${APIkey}/strains/data/flavors/${clickedID}`;
-
-    this.setState({ loading: true });
-
-    axios.get(url).then(res => {
-      const results = res.data;
-      this.setState({
-        flavors: results
+      axios.get(flavorURL).then(res => {
+        const flavor = res.data;
+        this.setState({
+          flavor,
+          positive,
+          negative,
+          medical
+        });
       });
     });
   }
 
+  getPositive() {
+    const positives = this.state.positive;
+
+    return (
+      <ul>
+        {positives.map(positive => (
+          <li key={positive}>{positive}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  getNegative() {
+    const negatives = this.state.negative;
+
+    return (
+      <ul>
+        {negatives.map(negative => (
+          <li key={negative}>{negative}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  getMedical() {
+    const medicals = this.state.medical;
+
+    return (
+      <ul>
+        {medicals.map(medical => (
+          <li key={medical}>{medical}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  getFlavor() {
+    const flavors = this.state.flavor;
+
+    return (
+      <ul>
+        {flavors.map(flavor => (
+          <li key={flavor}>{flavor}</li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
     const { result, index } = this.props;
-    const { medical, positive, negative } = this.state;
 
     return (
       <div
@@ -104,6 +145,24 @@ export default class SearchedResult extends Component {
         </div>
         <div className="result-effect-container">
           <p>{result.desc}</p>
+        </div>
+        <div className="result-effect-container">
+          <div>
+            <h4>The good: </h4>
+            {this.getPositive()}
+          </div>
+          <div>
+            <h4>The bad:</h4>
+            {this.getNegative()}
+          </div>
+          <div>
+            <h4>The Medical: </h4>
+            <p>{this.getMedical()}</p>
+          </div>
+          <div>
+            <h4>The Taste: </h4>
+            <p>{this.getFlavor()}</p>
+          </div>
         </div>
       </div>
     );
